@@ -1,0 +1,23 @@
+<form method="get">
+    <%=text_field_tag :search, params[:search]%>
+    <input type="submit">
+</form>
+<br>
+<%if @recipes.nil? || @recipes.length == 0%>
+    <h3>No Results for <%=@search%></h3>
+<%else%>
+<table>
+    <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Social Rank</th>
+    </tr>
+    <%@recipes.each do |e|%>
+        <tr>
+            <td><%=link_to(image_tag(e["image_url"]), e["f2f_url"])%></td>
+            <td><%=link_to(e["title"],e["f2f_url"])%></td>
+            <td><%=e["social_rank"]%></td>
+        </tr>
+    <%end%>
+</table>
+<%end%>
